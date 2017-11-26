@@ -1,61 +1,91 @@
+// s100.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
 
 using namespace std;
 
-const int InitialCount=100;
-int Count,Num,Player;
-bool Correct;
+#define isTest true
 
-int main ()
+int main()
 {
-    setlocale(LC_ALL, "Russian");    
+    const int InitialCount = 100;
+    int Count, Num, Player;
+    bool Correct;
+
+    setlocale(LC_ALL, "Russian");
     srand(time(0));
-    system ("cls");
-    Player=1;
-    Count=InitialCount;
-	do
-	{
-  	if (Player==1)
-	{
-    	do
-		{
-        cout<<"Âàø õîä. Íà ñòîëå "<<Count<<" ñïè÷åê.\n";
-        cout<<"Ñêîëüêî ñïè÷åê Âû áåðåòå?\n";
-        cin>>Num;
-        	if(Num>=1&&Num<=10&&Num<=Count)
-          		Correct=true;
-        	else
-        	{
-            cout<<"Íåâåðíî! Ïîâòîðèòå ââîä!\n";
-            Correct=false;
-        	} 
-    	}
-    	while (!Correct);
-   	}
-    else
+    system("cls");
+    Player = 1;
+    Count = InitialCount;
+
+    int userTestNum = -2;
+    int enemyTestNum = -2;
+    if (isTest)
+        Num = -2;
+    do
     {
-    	do
-			{
-     		Num=rand()%10+1;
-      		if (Num>Count)
-        		Num=Count;
-      			cout<<"Ìîé õîä. ß âçÿë "<<Num<<" ñïè÷åê\n";
-			}
-        while (!Correct);   
+        if (Player == 1)
+        {
+            do
+            {
+                cout << "Ð’Ð°Ñˆ Ñ…Ð¾Ð´. ÐÐ° ÑÑ‚Ð¾Ð»Ðµ " << Count << " ÑÐ¿Ð¸Ñ‡ÐµÐº.\n";
+                cout << "Ð¡ÐºÐ¾Ð»ÑŒÐºÐ¾ ÑÐ¿Ð¸Ñ‡ÐµÐº Ð’Ñ‹ Ð±ÐµÑ€ÐµÑ‚Ðµ?\n";
+                if (isTest)
+                {
+                    Num = userTestNum++;
+                    cout << "Ð¢ÐµÑÑ‚ Num = "<<Num<<"\n";
+                    if (userTestNum > 11)
+                        userTestNum = -1;
+                }
+                else
+                    cin >> Num;
+                if (Num >= 1 && Num <= 10 && Num <= Count)
+                    Correct = true;
+                else
+                {
+                    cout << "ÐÐµÐ²ÐµÑ€Ð½Ð¾! ÐŸÐ¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ðµ Ð²Ð²Ð¾Ð´!\n";
+                    Correct = false;
+                }
+            }
+            while (!Correct);
+        }
+        else
+        {
+            do
+            {
+                if (isTest)
+                {
+                    Num = enemyTestNum++;
+                    if (enemyTestNum > 11)
+                        enemyTestNum = -1;
+                }
+                else
+                    Num = rand() % 10 + 1;
+
+                if (Num < 1 || Num > 10)
+                    Num = 5;
+
+                if (Num > Count)
+                    Num = Count;
+                cout << "ÐœÐ¾Ð¹ Ñ…Ð¾Ð´. Ð¯ Ð²Ð·ÑÐ» " << Num << " ÑÐ¿Ð¸Ñ‡ÐµÐº\n";
+            }
+            while (!Correct);
+        }
+        Count -= Num;
+        if (Player == 1)
+            Player = 2;
+        else
+            Player = 1;
     }
-    Count-=Num;
-    if (Player==1) 
-        Player=2;
+    while (Count>0);
+    if (Player = 1)
+        cout << "Ð’Ñ‹ Ð¿Ð¾Ð±ÐµÐ´Ð¸Ð»Ð¸!";
     else 
-        Player=1;
-    }
- 	while (Count>0);
-  	if (Player=1)
-    	cout<<"Âû ïîáåäèëè!";
-  	else 
-  		cout<<"Âû ïðîèãðàëè!";
-  	system("pause");	
+        cout << "Ð’Ñ‹ Ð¿Ñ€Ð¾Ð¸Ð³Ñ€Ð°Ð»Ð¸!";
+    system("pause");
     return 0;
 }
