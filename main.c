@@ -1,15 +1,16 @@
 // s100.cpp : Defines the entry point for the console application.
 //
 
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-
-using namespace std;
+#include <stdio.h>
 
 #define CTEST_MAIN
 
-#include <ctest.h>
+// uncomment lines below to enable/disable features. See README.md for details
+#define CTEST_SEGFAULT
+//#define CTEST_NO_COLORS
+//#define CTEST_COLOR_OK
+
+#include "ctest.h"
 
 int main(int argc, const char** argv)
 {
