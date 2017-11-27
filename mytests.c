@@ -1,5 +1,4 @@
 #include <ctest.h>
-#include <iostream>
 #include <ctime>
 #include <cstdlib>
 
@@ -10,15 +9,12 @@ int GetUserNum(int Count)
     int Num;
     do
     {
-        cout << "Ваш ход. На столе " << Count << " спичек.\n";
-        cout << "Сколько спичек Вы берете?\n";
         //cin >> Num;
         Num = rand() % 10 + 1;
         if (Num >= 1 && Num <= 10 && Num <= Count)
             Correct = true;
         else
         {
-            cout << "Неверно! Повторите ввод!\n";
             Correct = false;
         }
     }
