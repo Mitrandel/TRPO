@@ -8,10 +8,9 @@
 using namespace std;
 
 const int InitialCount = 100;
-int Count, Player;
 bool Correct;
 
-int GetUserNum()
+int GetUserNum(int Count)
 {
     int Num;
     do
@@ -33,6 +32,7 @@ int GetUserNum()
 
 int main()
 {
+    int Count, Player;
     int Num;
     setlocale(LC_ALL, "Russian");
     srand(time(0));
@@ -44,7 +44,7 @@ int main()
     {
         if (Player == 1)
         {
-            GetUserNum();
+            GetUserNum(Count);
         }
         else
         {
