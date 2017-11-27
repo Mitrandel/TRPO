@@ -4,20 +4,20 @@
 int GetUserNum(int Count)
 {
     const int InitialCount = 100;
-    bool Correct;
+    int Correct;
     int Num;
     do
     {
         //cin >> Num;
         Num = rand() % 10 + 1;
         if (Num >= 1 && Num <= 10 && Num <= Count)
-            Correct = true;
+            Correct = 1;
         else
         {
-            Correct = false;
+            Correct = 0;
         }
     }
-    while (!Correct);
+    while (Correct == 0);
     return Num;
 }
 
