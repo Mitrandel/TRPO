@@ -8,8 +8,6 @@
 
 using namespace std;
 
-#define isTest true
-
 int main()
 {
     const int InitialCount = 100;
@@ -22,10 +20,6 @@ int main()
     Player = 1;
     Count = InitialCount;
 
-    int userTestNum = -2;
-    int enemyTestNum = -2;
-    if (isTest)
-        Num = -2;
     do
     {
         if (Player == 1)
@@ -34,15 +28,7 @@ int main()
             {
                 cout << "Ваш ход. На столе " << Count << " спичек.\n";
                 cout << "Сколько спичек Вы берете?\n";
-                if (isTest)
-                {
-                    Num = userTestNum++;
-                    cout << "Тест Num = "<<Num<<"\n";
-                    if (userTestNum > 11)
-                        userTestNum = -1;
-                }
-                else
-                    cin >> Num;
+                cin >> Num;
                 if (Num >= 1 && Num <= 10 && Num <= Count)
                     Correct = true;
                 else
@@ -57,17 +43,7 @@ int main()
         {
             do
             {
-                if (isTest)
-                {
-                    Num = enemyTestNum++;
-                    if (enemyTestNum > 11)
-                        enemyTestNum = -1;
-                }
-                else
-                    Num = rand() % 10 + 1;
-
-                if (Num < 1 || Num > 10)
-                    Num = 5;
+                Num = rand() % 10 + 1;
 
                 if (Num > Count)
                     Num = Count;
@@ -86,6 +62,7 @@ int main()
         cout << "Вы победили!";
     else 
         cout << "Вы проиграли!";
+    cout << endl;
     system("pause");
     return 0;
 }
