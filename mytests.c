@@ -3,7 +3,6 @@
 
 int GetUserNum(int Count)
 {
-    const int InitialCount = 100;
     int Correct;
     int Num;
     do
