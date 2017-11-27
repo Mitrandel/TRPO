@@ -1,6 +1,5 @@
 #include <ctest.h>
-#include <ctime>
-#include <cstdlib>
+#include <stdlib.h>
 
 int GetUserNum(int Count)
 {
