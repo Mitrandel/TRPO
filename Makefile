@@ -1,14 +1,21 @@
-CC=g++
-CFLAGS=-c -Wall
-LDFLAGS=
-SOURCES=matches.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=hello
+UNAME=$(shell uname)
 
-all: $(SOURCES) $(EXECUTABLE)
-	
-$(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+CCFLAGS=-Wall -Wextra -Wconversion -Wredundant-decls -Wno-unused-parameter -O3
+CC=clang
 
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+ifeq ($(UNAME), Darwin)
+LDFLAGS=-Wl,-flat_namespace,-undefined,dynamic_lookup
+endif
+
+all: test
+
+remake: clean all
+
+%.o: %.c ctest.h
+	$(CC) $(CCFLAGS) -c -o $@ $<
+
+test: main.o ctest.h mytests.o
+	$(CC) $(LDFLAGS) main.o mytests.o -o test
+
+clean:
+	rm -f test *.o
