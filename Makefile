@@ -1,27 +1,14 @@
-EXECS = matches
-C_FLAGS = -c
-CC = g++ -o2
-LD_FLAGS = -Wl,-rpath
+CC=g++
+CFLAGS=-c -Wall
+LDFLAGS=
+SOURCES=matches.cpp
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=hello
 
-SRCS = $(wildcard *.cpp)
-SRCS_CC = $(wildcard *.cc)
-
-OBJECTS = $(patsubst %.cpp,$%.o, $(notdir $(SRCS)))
-OBJECTS += $(patsubst %.cc,$%.o, $(notdir $(SRCS_CC)))
-
-$(EXECS): clean $(OBJECTS)
-	@echo linking
-	$(CC) $(OBJECTS) -o $@ $(LD_FLAGS) $(LIBS)
+all: $(SOURCES) $(EXECUTABLE)
 	
-$%.o: $(SRC_APP_DIR)/%.cc
-	$(CC) $(INC_DIRS) $(C_FLAGS) $< -o $@
-	
-$%.o: %.cc
-	$(CC) $(INC_DIRS) $(C_FLAGS) $< -o $@
-	
-$%.o: %.cpp
-	$(CC) $(INC_DIRS) $(C_FLAGS) $< -o $@
+$(EXECUTABLE): $(OBJECTS) 
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
-clean:
-	@echo cleaning
-	rm -f *.o
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
