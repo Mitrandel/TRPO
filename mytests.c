@@ -1,4 +1,4 @@
-#include <ctest.h>
+#include "ctest.h"
 #include <stdlib.h>
 
 int GetUserNum(int Count)
