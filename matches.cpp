@@ -57,7 +57,7 @@ int main()
             Player = 1;
     }
     while (Count>0);
-    if (Player = 1)
+    if (Player == 1)
         cout << "Вы победили!";
     else 
         cout << "Вы проиграли!";
