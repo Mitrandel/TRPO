@@ -7,12 +7,33 @@
 
 using namespace std;
 
+const int InitialCount = 100;
+int Count, Player;
+bool Correct;
+
+int GetUserNum()
+{
+    int Num;
+    do
+    {
+        cout << "Ваш ход. На столе " << Count << " спичек.\n";
+        cout << "Сколько спичек Вы берете?\n";
+        cin >> Num;
+        if (Num >= 1 && Num <= 10 && Num <= Count)
+            Correct = true;
+        else
+        {
+            cout << "Неверно! Повторите ввод!\n";
+            Correct = false;
+        }
+    }
+    while (!Correct);
+    return Num;
+}
+
 int main()
 {
-    const int InitialCount = 100;
-    int Count, Num, Player;
-    bool Correct;
-
+    int Num;
     setlocale(LC_ALL, "Russian");
     srand(time(0));
     system("cls");
@@ -23,20 +44,7 @@ int main()
     {
         if (Player == 1)
         {
-            do
-            {
-                cout << "Ваш ход. На столе " << Count << " спичек.\n";
-                cout << "Сколько спичек Вы берете?\n";
-                cin >> Num;
-                if (Num >= 1 && Num <= 10 && Num <= Count)
-                    Correct = true;
-                else
-                {
-                    cout << "Неверно! Повторите ввод!\n";
-                    Correct = false;
-                }
-            }
-            while (!Correct);
+            GetUserNum();
         }
         else
         {
