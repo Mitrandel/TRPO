@@ -1,6 +1,6 @@
 EXECS = matches
 TEMPDIR = $(shell pwd)/tmp
-C_FLAGS = -c `root-config --cflags`
+C_FLAGS = -c
 CC = g++ -o2
 LD_FLAGS = -Wl,-rpath
 
